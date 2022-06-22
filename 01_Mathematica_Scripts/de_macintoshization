@@ -1,0 +1,10 @@
+#!/usr/bin/env wolframscript
+(* ::Package:: *)
+deMacintoshization[directory_] := Module[{},Export[#, aaa=StringReplace[Import[#, "Text"], "/Users/johncosnett/" -> "~/"], "Text"] & /@ FileNames["*.sh", directory, 2];Print[aaa]];
+
+deMacintoshizationMMA[directory_] := Module[{},Export[#, aaa=StringReplace[Import[#, "Text"], "\"/Users/johncosnett/" -> "$HomeDirectory<>\"/"], "Text"] & /@ FileNames["*.m", directory, 2];Print[aaa]];
+
+deMacintoshization[Directory[]]
+
+deMacintoshizationMMA[Directory[]]
+

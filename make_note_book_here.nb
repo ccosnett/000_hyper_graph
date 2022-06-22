@@ -1,0 +1,63 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      1629,         55]
+NotebookOptionsPosition[      1206,         39]
+NotebookOutlinePosition[      1587,         56]
+CellTagsIndexPosition[      1544,         53]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"x", "=", "1"}]], "Input",
+ CellChangeTimes->{{3.767090451519556*^9, 
+  3.7670904526719313`*^9}},ExpressionUUID->"f8a7a283-ac34-4f50-8804-\
+a3a021805f0e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"createNotebook", "[", 
+    RowBox[{"dir_", ",", "name_"}], "]"}], ":=", 
+   RowBox[{"Export", "[", 
+    RowBox[{
+     RowBox[{"dir", "<>", "\"\</\>\"", "<>", "name"}], ",", "\"\<\>\""}], 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.767090699486388*^9, 3.7670908107452497`*^9}, {
+  3.7670926074787607`*^9, 3.7670926111094093`*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"bce4af36-e864-44b7-b3ab-e6d02bbd8429"]
+},
+WindowSize->{1278, 1395},
+WindowMargins->{{Automatic, 0}, {Automatic, -1}},
+Background->GrayLevel[1],
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 177, 4, 30, "Input",ExpressionUUID->"f8a7a283-ac34-4f50-8804-a3a021805f0e"],
+Cell[738, 26, 464, 11, 30, "Input",ExpressionUUID->"bce4af36-e864-44b7-b3ab-e6d02bbd8429"]
+}
+]
+*)
+

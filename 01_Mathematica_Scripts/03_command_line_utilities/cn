@@ -1,0 +1,17 @@
+VAR1=".n"
+cp ~/Dropbox/00_LIB/19_mathematica_library/proteon_notebook.nb ./$1".nb"
+cp ~/Dropbox/00_LIB/19_mathematica_library/proteon_notebook.nb ./$2".nb"
+cp ~/Dropbox/00_LIB/19_mathematica_library/proteon_notebook.nb ./$3".nb"
+cp ~/Dropbox/00_LIB/19_mathematica_library/proteon_notebook.nb ./$4".nb"
+cp ~/Dropbox/00_LIB/19_mathematica_library/proteon_notebook.nb ./$5".nb"
+cp ~/Dropbox/00_LIB/19_mathematica_library/proteon_notebook.nb ./$6".nb"
+cp ~/Dropbox/00_LIB/19_mathematica_library/proteon_notebook.nb ./$7".nb"
+cp ~/Dropbox/00_LIB/19_mathematica_library/proteon_notebook.nb ./$8".nb"
+cp ~/Dropbox/00_LIB/19_mathematica_library/proteon_notebook.nb ./$9".nb"
+#cp ~/Dropbox/00_LIB/19_mathematica_library/proteon_notebook.nb ./$10".nb"
+#cp ~/Dropbox/00_LIB/19_mathematica_library/proteon_notebook.nb ./$11".nb"
+open ./$1".nb"
+xdg-open ./$1".nb"
+
+
+#/home/asdf/Dropbox/00_LIB/19_mathematica_library/proteon_notebook.nb

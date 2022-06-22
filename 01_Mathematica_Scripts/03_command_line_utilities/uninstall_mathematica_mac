@@ -1,0 +1,5 @@
+sudo rm -r /Applications/Mathematica.app/
+sudo rm -r /Library/Mathematica/
+sudo rm -r ~/Library/Mathematica/
+sudo rm -r ~/Library/Wolfram/
+sudo rm -r ~/Library/Caches/Wolfram/

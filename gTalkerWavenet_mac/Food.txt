@@ -1,0 +1,177 @@
+Food
+Еда- food
+напитки-drinks
+вода-water
+чай-tea
+кофе-coffee
+вино-wine
+пиво-beer
+cуп- soup
+мясо-meat
+свинина-pork
+говядина-beef
+официант-waiter
+блюдо-dish
+рыба-fish
+так себе,не очень-so so
+курица- a chicken
+вкусно-tasty,yummy
+Острый –spicy
+Кислый – sour
+Сладкий -sweet
+Солёный -salty
+хлеб- bread
+
+масло-butter
+варенье- jam
+яйца-eggs
+сыр-cheese
+колбаса-Wurst
+зелень- greenery
+молоко-milk
+ложка-spoon ( большая или маленькая)
+вилка-fork
+нож-knife
+тарелка-dish,plate
+кружка-cup
+стакан-glass
+Мне нравится-I like
+Мне не нравится-I don’t like
+Я люблю-i love
+завтрак-breakfast
+обед-lunch
+Ужин-dinner
+
+Мясо
+bacon — бекон
+beef — говядина
+chicken — курица
+duck — утка
+ham — ветчина
+lamb — мясо ягненка
+liver — печень
+meat — мясо
+mutton — баранина
+pork — свинина
+poultry — птица, дичь
+sausage — сосиска
+tenderloin — филе, вырезка
+turkey — индейка
+veal — телятина
+
+Овощи- vegetables
+Tomatos- помидоры
+avocado — авокадо
+broccoli — брокколи
+cabbage — капуста
+carrot — морковь
+
+cauliflower — цветная капуста
+cucumber — огурец
+eggplant— баклажан
+garlic — чеснок
+onion — лук
+
+potato — картофель
+spinach — шпинат
+pumpkin / squash — тыква
+
+Фрукты-fruits
+apple — яблоко
+apricot — абрикос
+banana — банан
+berry — ягода
+blackberry — ежевика
+blueberry — черника
+cherry — вишня
+grape — виноград
+grapefruit — грейпфрут
+nut —орех
+lemon — лимон
+melon — дыня
+orange — апельсин
+peach — персик
+raspberry — малина
+strawberry — клубника
+tangerine / mandarin — мандарин
+
+cocktail
+
+коктейль
+
+cognac
+
+коньяк
+
+whisky
+
+виски
+
+cider
+
+сидр
+
+beer
+
+пиво
+
+dark beer
+
+темное пиво
+
+ginger beer имбирное пиво
+lager beer
+
+светлое пиво
+
+wine
+
+вино
+
+dry wine
+
+сухое вино
+
+sparkling wine
+
+игристое вино
+
+champagne шампанское
+liqueur
+
+ликер
+
+punch
+
+пунш
+
+near-beer
+
+безалкогольное пиво
+
+cocoa
+
+какао
+
+cappucino капучино
+coffee
+
+кофе
+
+juice
+
+сок
+
+lemonade
+
+лимонад
+
+water
+
+вода
+
+tea
+
+чай
+
+

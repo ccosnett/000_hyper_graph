@@ -1,0 +1,58 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      1484,         50]
+NotebookOptionsPosition[      1060,         34]
+NotebookOutlinePosition[      1409,         49]
+CellTagsIndexPosition[      1366,         46]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Run", "[", "\"\<sh test.sh\>\"", "]"}]], "Input",
+ TaggingRules->{"LastCursorPosition" -> False},
+ CellChangeTimes->{
+  3.767869704382765*^9, {3.825851023038126*^9, 3.82585102936593*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"b0806392-d3cb-4c31-81d6-e7d82d090343"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.825851030426166*^9, 3.825851040657564*^9}},
+ CellLabel->"Out[2]=",ExpressionUUID->"604d38e5-06cc-4b5c-8119-66607f461b2f"]
+}, Open  ]]
+},
+WindowSize->{1720, 1388},
+WindowMargins->{{Automatic, -197}, {-767, Automatic}},
+FrontEndVersion->"12.0 for Linux x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"DefaultModified2.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 289, 5, 61, "Input",ExpressionUUID->"b0806392-d3cb-4c31-81d6-e7d82d090343"],
+Cell[872, 29, 172, 2, 69, "Output",ExpressionUUID->"604d38e5-06cc-4b5c-8119-66607f461b2f"]
+}, Open  ]]
+}
+]
+*)
+

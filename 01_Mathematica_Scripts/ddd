@@ -1,0 +1,11 @@
+#!/usr/bin/env wolframscript
+(* ::Package:: *)
+
+argL=$ScriptCommandLine;
+string = "word";
+string = argL[[2]];
+RunProcess[{"zsh", "-c", "echo " <> string <> "| xclip -selection clipboard"}]
+
+
+
+

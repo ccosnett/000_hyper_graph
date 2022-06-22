@@ -1,0 +1,606 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     25393,        598]
+NotebookOptionsPosition[     20004,        507]
+NotebookOutlinePosition[     20615,        529]
+CellTagsIndexPosition[     20572,        526]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"s", "[", "\"\<This is ordinary text\>\"", "]"}]], "Code",
+ CellChangeTimes->{{3.75016764561648*^9, 3.7501676492556343`*^9}, {
+   3.7501676886882057`*^9, 3.750167703965863*^9}, {3.750167738611231*^9, 
+   3.7501677393466043`*^9}, {3.750167787121108*^9, 3.75016779014497*^9}, 
+   3.750167826726975*^9, 3.7501679757097178`*^9, {3.7501681685940857`*^9, 
+   3.750168169953878*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"6965bc4f-3bd0-42bf-8a73-8822a485dccd"],
+
+Cell[BoxData[
+ RowBox[{"\"\<One thing that we can do is exploit the Cell evaluation \
+function option of cells to replace the standard evaluator with a function of \
+our own design\>\"", "//", "s"}]], "Input",
+ CellChangeTimes->{{3.750168439539686*^9, 3.750168491767359*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"8ee216d0-a746-425c-93db-91fdef753341"],
+
+Cell[BoxData[
+ RowBox[{"\"\<In this case, that evaluation function will invoke the system \
+shell\>\"", "//", "s"}]], "Input",
+ CellChangeTimes->{{3.750168494808519*^9, 3.750168522396564*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"634af1a5-4e90-4e4a-81df-6ad92fa67dc7"],
+
+Cell[BoxData[
+ RowBox[{"\"\<First, let's create a helper function that can create such \
+cells\>\"", "//", "s"}]], "Input",
+ CellChangeTimes->{{3.750168525582636*^9, 3.75016852934057*^9}, {
+  3.750168606441121*^9, 3.750168616168271*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"910aed07-ba2c-4b3c-8140-e1c70a0b6e8a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"evaluatableCell", "[", 
+   RowBox[{"label_String", ",", " ", "evaluationFunction_"}], "]"}], ":=", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(", "\[IndentingNewLine]", "  ", 
+   RowBox[{
+    RowBox[{"CellPrint", "[", "\[IndentingNewLine]", 
+     RowBox[{"TextCell", "[", "\[IndentingNewLine]", 
+      RowBox[{
+      "\"\<\>\"", ",", "\[IndentingNewLine]", "\"\<Program\>\"", ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Evaluatable", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"CellEvaluationFunction", "\[Rule]", "evaluationFunction"}], 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{"CellFrameLabels", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"None", ",", "label"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"None", ",", "None"}], "}"}]}], "}"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"CellGroupingRules", "\[Rule]", "\"\<InputGroupin\>\""}]}], 
+      "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"SelectionMove", "[", 
+     RowBox[{
+      RowBox[{"EvaluationCell", "[", "]"}], ",", "All", ",", 
+      "EvaluationCell"}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"NotebookDelete", "[", "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"SelectionMove", "[", 
+     RowBox[{
+      RowBox[{"EvaluationNotebook", "[", "]"}], ",", "Next", ",", 
+      "CellContents"}], "]"}]}], "\[IndentingNewLine]", ")"}]}]], "Input",
+ CellChangeTimes->{{3.75016861981768*^9, 3.750168832229604*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"101e39c3-345d-4236-b3a9-7f6feddd907c"],
+
+Cell[BoxData[
+ RowBox[{"\"\<This function creates a cell with the look of a Program cell, \
+but evaluates its contents using a function which we provide\>\"", "//", 
+  "s"}]], "Input",
+ CellChangeTimes->{{3.750168838837484*^9, 3.750168896176133*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"0ee9e11d-7cf0-4cee-9ce9-53fb23b41999"],
+
+Cell[BoxData[
+ RowBox[{"\"\<So if we wanted to have the system shell evaluate the contents, \
+we would do this\>\"", "//", "s"}]], "Input",
+ CellChangeTimes->{{3.750168908041031*^9, 3.750168924518189*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"fd4e027d-80d8-44e1-bcc9-43940653243b"],
+
+Cell[BoxData[
+ RowBox[{"shell", ":=", 
+  RowBox[{"evaluatableCell", "[", 
+   RowBox[{"\"\<shell\>\"", ",", 
+    RowBox[{
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"\"\<!\>\"", "~~", "#"}], ",", "\"\<Text\>\""}], "]"}], 
+     "&"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.750169028026919*^9, 3.7501690522796183`*^9}, 
+   3.75016909794344*^9},
+ CellLabel->"In[22]:=",ExpressionUUID->"add32500-98f8-441b-bee8-f9ea8ee04d7f"],
+
+Cell["zsh tensor", "Program",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin",
+ CellEvaluationFunction->(Import[
+   StringExpression["!", #], "Text"]& ),
+ CellFrameLabels->{{None, "shell"}, {None, None}},
+ CellChangeTimes->{{3.750169101252513*^9, 
+  3.750169135138713*^9}},ExpressionUUID->"834c0467-cdf8-4644-8138-\
+4b7031099acb"],
+
+Cell[BoxData["\<\"/\"\>"], "Output",
+ CellChangeTimes->{{3.750169102401842*^9, 3.750169132454792*^9}},
+ CellLabel->"Out[30]=",ExpressionUUID->"9c9d0b31-c48e-42db-9aeb-e5c9c11fc382"],
+
+Cell["ls", "Program",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin",
+ CellEvaluationFunction->(Import[StringExpression["!", #]& , "Text"]& ),
+ CellFrameLabels->{{None, "shell"}, {None, None}},
+ CellChangeTimes->{{3.750169055560595*^9, 3.750169083677093*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"a49a3f06-922c-4d8c-9405-817a7476a0d3"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Import","chtype",
+   "\"First argument \\!\\(\\*RowBox[{RowBox[{\\\"\\\\\\\"!\\\\\\\"\\\", \
+\\\"~~\\\", \\\"#1\\\"}], \\\"&\\\"}]\\) is not a valid file, directory, or \
+URL specification.\"",2,18,4,16640875892117489535,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.750169062996009*^9, 3.7501690840253563`*^9}},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"6223f794-e376-4085-8533-52afbcfc6c70"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{{3.750169062998885*^9, 3.750169084039238*^9}},
+ CellLabel->"Out[18]=",ExpressionUUID->"9841a69c-88fa-4cdb-ad45-2d23b8236ce5"],
+
+Cell["cd ~/Documents;pwd", "Program",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin",
+ CellEvaluationFunction->(Import[
+   StringExpression["!", #], "Text"]& ),
+ CellFrameLabels->{{None, "shell"}, {None, None}},
+ CellChangeTimes->{{3.750168965247244*^9, 
+  3.750169004826282*^9}},ExpressionUUID->"7b554f8f-24f8-45e6-aba7-\
+1f351ef6dda7"],
+
+Cell[BoxData["\<\"/home/conor/Documents\"\>"], "Output",
+ CellChangeTimes->{{3.750168969978024*^9, 3.750168994570058*^9}},
+ CellLabel->"Out[12]=",ExpressionUUID->"48397aeb-0604-4397-a42e-c5b1d98bb394"],
+
+Cell[BoxData[
+ RowBox[{"\"\<Note that when we evaluate this expression, the input \
+expression is erased and replaced with a new cell\>\"", "//", "s"}]], "Input",\
+
+ CellChangeTimes->{{3.750169198064826*^9, 3.750169224573543*^9}},
+ CellLabel->"In[31]:=",ExpressionUUID->"394a3393-3d25-4d3d-a35a-739550973b95"],
+
+Cell["", "PageBreak",
+ GeneratedCell->True,
+ CellAutoOverwrite->True,
+ CellChangeTimes->{
+  3.750169427647719*^9},ExpressionUUID->"705e40c3-0163-4733-b7c0-\
+5d1390b6f3c4"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.7501694299735317`*^9, 
+  3.7501694318054733`*^9}},ExpressionUUID->"51f0922e-7e19-4c2d-833a-\
+af1e79f1a64c"],
+
+Cell["", "PageBreak",
+ GeneratedCell->True,
+ CellAutoOverwrite->True,
+ CellChangeTimes->{
+  3.750169434374321*^9},ExpressionUUID->"21b7d585-bbbc-4863-9a9e-\
+31296811c29b"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"evaluationFunction", "=", "s"}], ";", 
+  RowBox[{
+   RowBox[{"g", "/@", "#"}], "&"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"label", "=", "\"\<speach\>\""}], ";"}]}], "Input",
+ CellChangeTimes->{{3.7501694950877247`*^9, 3.750169522421187*^9}, {
+  3.7501695622831078`*^9, 3.750169593009789*^9}, {3.750169668118671*^9, 
+  3.750169668372745*^9}},
+ CellLabel->"In[55]:=",ExpressionUUID->"266abf77-7d15-428c-b628-527d08435750"],
+
+Cell[BoxData[
+ RowBox[{"evaluatableCell", "[", 
+  RowBox[{"\"\<t\>\"", ",", "evaluationFunction"}], "]"}]], "Input",
+ CellChangeTimes->{{3.750169597489949*^9, 
+  3.750169613113738*^9}},ExpressionUUID->"c84ab318-b5d8-4b26-b1fc-\
+7596aded3683"],
+
+Cell[BoxData[
+ RowBox[{"evaluatableCell", "[", 
+  RowBox[{"\"\<t\>\"", ",", "evaluationFunction"}], "]"}]], "Input",
+ CellChangeTimes->{{3.750169597489949*^9, 
+  3.750169613113738*^9}},ExpressionUUID->"24cbe3ea-c554-416f-91f5-\
+37afbab45488"],
+
+Cell[BoxData[
+ RowBox[{"evaluatableCell", "[", 
+  RowBox[{"\"\<t\>\"", ",", "evaluationFunction"}], "]"}]], "Input",
+ CellChangeTimes->{{3.750169597489949*^9, 
+  3.750169613113738*^9}},ExpressionUUID->"4afc2ded-b898-43b3-87c0-\
+d2b468500956"],
+
+Cell[BoxData[
+ RowBox[{"evaluatableCell", "[", 
+  RowBox[{"\"\<t\>\"", ",", "evaluationFunction"}], "]"}]], "Input",
+ CellChangeTimes->{{3.750169597489949*^9, 
+  3.750169613113738*^9}},ExpressionUUID->"7144433c-97ca-4578-8d42-\
+7cd62a81e218"],
+
+Cell[BoxData[
+ RowBox[{"evaluatableCell", "[", 
+  RowBox[{"\"\<t\>\"", ",", "evaluationFunction"}], "]"}]], "Input",
+ CellChangeTimes->{{3.750169597489949*^9, 
+  3.750169613113738*^9}},ExpressionUUID->"2b16b1ae-83de-4f49-b8f9-\
+3cdb89b1ac8c"],
+
+Cell[BoxData[
+ RowBox[{"evaluatableCell", "[", 
+  RowBox[{"\"\<t\>\"", ",", "evaluationFunction"}], "]"}]], "Input",
+ CellChangeTimes->{{3.750169597489949*^9, 
+  3.750169613113738*^9}},ExpressionUUID->"df3420d9-3de1-413d-ad14-\
+8782848d0f1f"],
+
+Cell[BoxData[
+ RowBox[{"evaluatableCell", "[", 
+  RowBox[{"\"\<t\>\"", ",", "evaluationFunction"}], "]"}]], "Input",
+ CellChangeTimes->{{3.750169597489949*^9, 
+  3.750169613113738*^9}},ExpressionUUID->"ab14ad58-fec7-4e9e-aae5-\
+41ae194539df"],
+
+Cell["", "PageBreak",
+ GeneratedCell->True,
+ CellAutoOverwrite->True,
+ CellChangeTimes->{
+  3.7501697043333387`*^9},ExpressionUUID->"796ace9d-c592-4cb4-85e2-\
+b9a10db0c39a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"cel", "[", "color_", "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{"(", "\[IndentingNewLine]", "  ", 
+   RowBox[{
+    RowBox[{"CellPrint", "[", "\[IndentingNewLine]", 
+     RowBox[{"TextCell", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Row", "[", 
+        RowBox[{"{", 
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<\>\"", ",", " ", 
+           RowBox[{"FontWeight", "\[Rule]", "Bold"}], ",", "color"}], "]"}], 
+         "}"}], "]"}], ",", "\[IndentingNewLine]", "\"\<Text\>\"", ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Evaluatable", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"CellEvaluationFunction", "\[Rule]", 
+         RowBox[{"s", "@", 
+          RowBox[{"First", "[", 
+           RowBox[{"List", "[", "##", "]"}], "]"}]}]}], "&"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"CellFrameLabels", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"None", ",", "\"\<\[CircleTimes]\>\""}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"None", ",", "None"}], "}"}]}], "}"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"CellGroupingRules", "\[Rule]", "\"\<InputGroupin\>\""}]}], 
+      "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"SelectionMove", "[", 
+     RowBox[{
+      RowBox[{"EvaluationCell", "[", "]"}], ",", "All", ",", 
+      "EvaluationCell"}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"NotebookDelete", "[", "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"SelectionMove", "[", 
+     RowBox[{
+      RowBox[{"EvaluationNotebook", "[", "]"}], ",", "Next", ",", 
+      "CellContents"}], "]"}]}], "\[IndentingNewLine]", ")"}]}]], "Input",
+ CellChangeTimes->{{3.750169713947979*^9, 3.7501697206594887`*^9}, {
+  3.750169845037616*^9, 3.750169860106147*^9}, {3.750170054218564*^9, 
+  3.750170105085537*^9}, {3.750170149547454*^9, 3.750170199128302*^9}, {
+  3.7501702350242863`*^9, 3.750170236076915*^9}, {3.75017027935702*^9, 
+  3.750170287499016*^9}, {3.7501703606736107`*^9, 3.7501704525619707`*^9}, {
+  3.750170491753956*^9, 3.7501704919283133`*^9}, {3.7501705918026752`*^9, 
+  3.750170730202838*^9}, {3.750170764139647*^9, 3.750170765296712*^9}, {
+  3.750171198577012*^9, 3.7501712266062813`*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"46a84479-db50-4dab-a8a8-3349f26fa1ab"],
+
+Cell["", "Text",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin",
+ CellEvaluationFunction->$CellContext`g,
+ GeneratedCell->True,
+ CellAutoOverwrite->True,
+ CellFrameLabels->{{None, "speak"}, {None, None}},
+ CellChangeTimes->{
+  3.750170348704419*^9},ExpressionUUID->"eee7fa9c-3a4f-426c-a314-\
+2fedb3618c80"],
+
+Cell[TextData[StyleBox["the rain in spain",
+ StripOnInput->False,
+ LineColor->RGBColor[0, 0, 1],
+ FrontFaceColor->RGBColor[0, 0, 1],
+ BackFaceColor->RGBColor[0, 0, 1],
+ GraphicsColor->RGBColor[0, 0, 1],
+ FontWeight->Bold,
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin",
+ CellEvaluationFunction->$CellContext`g,
+ CellFrameLabels->{{None, "\[CircleTimes]"}, {None, None}},
+ CellChangeTimes->{{3.750170773260901*^9, 3.750170777045783*^9}},
+ CellLabel->"In[36]:=",ExpressionUUID->"c208554c-9425-4e9b-b9a4-11d3b1e6cff5"],
+
+Cell[TextData[StyleBox["the rain",
+ StripOnInput->False,
+ LineColor->RGBColor[1, 0, 0],
+ FrontFaceColor->RGBColor[1, 0, 0],
+ BackFaceColor->RGBColor[1, 0, 0],
+ GraphicsColor->RGBColor[1, 0, 0],
+ FontWeight->Bold,
+ FontColor->RGBColor[1, 0, 0]]], "Text",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin",
+ CellFrameLabels->{{None, "\[CircleTimes]"}, {None, None}},
+ CellChangeTimes->{{3.750171232410655*^9, 3.750171245266262*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"cebbcf50-0dc3-4bfc-abe0-6791b0cfe4c8"],
+
+Cell[BoxData[
+ RowBox[{"rain", " ", "the"}]], "Output",
+ CellChangeTimes->{{3.750171245547614*^9, 3.7501712473959217`*^9}},
+ CellLabel->"Out[6]=",ExpressionUUID->"2f7f4e7a-5cf8-441a-8c7d-f8163da0700f"],
+
+Cell[BoxData["zzzz"], "Input",
+ CellChangeTimes->{{3.750171249449115*^9, 
+  3.750171250226597*^9}},ExpressionUUID->"673fb0d0-e44e-46e1-b8b2-\
+2644a2b7542b"],
+
+Cell[BoxData[
+ RowBox[{"cel", "[", 
+  RowBox[{"\"\<\>\"", ",", "g"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7501698683319607`*^9, 
+  3.750169872913212*^9}},ExpressionUUID->"d2578384-ef94-4252-a9d4-\
+3b72b1a186fc"],
+
+Cell[BoxData[
+ RowBox[{"cel", "[", 
+  RowBox[{"\"\<\>\"", ",", "g"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7501698683319607`*^9, 
+  3.750169872913212*^9}},ExpressionUUID->"8e1a9966-5ab5-4372-9b9a-\
+3c58b0141f63"],
+
+Cell[TextData[StyleBox["the rain in spain",
+ StripOnInput->False,
+ LineColor->RGBColor[0, 0, 1],
+ FrontFaceColor->RGBColor[0, 0, 1],
+ BackFaceColor->RGBColor[0, 0, 1],
+ GraphicsColor->RGBColor[0, 0, 1],
+ FontWeight->Bold,
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin",
+ CellEvaluationFunction->$CellContext`g,
+ CellFrameLabels->{{None, "\[CircleTimes]"}, {None, None}},
+ CellChangeTimes->{{3.750170735230196*^9, 3.7501707376228533`*^9}},
+ CellLabel->"In[34]:=",ExpressionUUID->"09cc1e19-3f7c-4696-a783-b85c5cb128d5"],
+
+Cell[TextData[StyleBox["the rain in spain",
+ StripOnInput->False,
+ LineColor->RGBColor[0, 0, 1],
+ FrontFaceColor->RGBColor[0, 0, 1],
+ BackFaceColor->RGBColor[0, 0, 1],
+ GraphicsColor->RGBColor[0, 0, 1],
+ FontWeight->Normal,
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin",
+ CellEvaluationFunction->$CellContext`g,
+ CellFrameLabels->{{None, "\[CircleTimes]"}, {None, None}},
+ CellChangeTimes->{{3.750170713176845*^9, 3.75017071553609*^9}},
+ CellLabel->"In[30]:=",ExpressionUUID->"f24d1f80-88aa-4b19-9c3c-a443901e8064"],
+
+Cell[TextData[StyleBox["the rain in spain",
+ StripOnInput->False,
+ LineColor->RGBColor[0, 1, 0],
+ FrontFaceColor->RGBColor[0, 1, 0],
+ BackFaceColor->RGBColor[0, 1, 0],
+ GraphicsColor->RGBColor[0, 1, 0],
+ FontWeight->Normal,
+ FontColor->RGBColor[0, 1, 0]]], "Text",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin",
+ CellEvaluationFunction->$CellContext`g,
+ CellFrameLabels->{{None, "\[CircleTimes]"}, {None, None}},
+ CellChangeTimes->{{3.750170704833004*^9, 3.750170707136984*^9}},
+ CellLabel->"In[26]:=",ExpressionUUID->"7e47e5b8-61da-414d-9dfd-2d99c4090bf2"],
+
+Cell[TextData[StyleBox["the rain in spain",
+ StripOnInput->False,
+ LineColor->RGBColor[0, 0, 1],
+ FrontFaceColor->RGBColor[0, 0, 1],
+ BackFaceColor->RGBColor[0, 0, 1],
+ GraphicsColor->RGBColor[0, 0, 1],
+ FontWeight->Normal,
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin",
+ CellEvaluationFunction->$CellContext`g,
+ CellFrameLabels->{{None, "\[CircleTimes]"}, {None, None}},
+ CellChangeTimes->{{3.750170679788126*^9, 3.750170682538477*^9}},
+ CellLabel->"In[22]:=",ExpressionUUID->"8374ea3e-467a-4b5b-8d2a-87d65cd4bb82"],
+
+Cell[TextData[StyleBox["the rain in spain",
+ StripOnInput->False,
+ LineColor->RGBColor[0, 0, 1],
+ FrontFaceColor->RGBColor[0, 0, 1],
+ BackFaceColor->RGBColor[0, 0, 1],
+ GraphicsColor->RGBColor[0, 0, 1],
+ FontWeight->Bold,
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin",
+ CellEvaluationFunction->$CellContext`g,
+ CellFrameLabels->{{None, "\[CircleTimes]"}, {None, None}},
+ CellChangeTimes->{{3.7501706529235086`*^9, 3.7501706556598063`*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"550ac235-11d9-4fed-98b3-069f66401d82"],
+
+Cell[TextData[StyleBox["the rain in spain",
+ StripOnInput->False,
+ LineColor->RGBColor[1, 0, 0],
+ FrontFaceColor->RGBColor[1, 0, 0],
+ BackFaceColor->RGBColor[1, 0, 0],
+ GraphicsColor->RGBColor[1, 0, 0],
+ FontWeight->Bold,
+ FontColor->RGBColor[1, 0, 0]]], "Text",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin",
+ CellEvaluationFunction->$CellContext`g,
+ CellFrameLabels->{{None, "\[CircleTimes]"}, {None, None}},
+ CellChangeTimes->{{3.750170639235557*^9, 3.750170641844488*^9}},
+ CellLabel->"In[14]:=",ExpressionUUID->"f1293f3f-3c27-474d-a37f-98f72ee4974d"],
+
+Cell[TextData[StyleBox["the rain in spain",
+ StripOnInput->False,
+ FontWeight->Bold]], "Text",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin",
+ CellEvaluationFunction->$CellContext`g,
+ CellFrameLabels->{{None, "\[CircleTimes]"}, {None, None}},
+ CellChangeTimes->{{3.7501706248377*^9, 3.750170628341502*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"8688fbb7-ec57-41cc-9945-b8a6a60a2e8e"],
+
+Cell[TextData[{
+ StyleBox["bold",
+  StripOnInput->False,
+  FontWeight->Bold],
+ " text"
+}], "Text",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin",
+ CellEvaluationFunction->$CellContext`g,
+ GeneratedCell->True,
+ CellAutoOverwrite->True,
+ CellFrameLabels->{{None, "\[CircleTimes]"}, {None, None}},
+ CellChangeTimes->{3.7501705990668163`*^9},
+ CellLabel->"In[6]:=",ExpressionUUID->"8115f9da-dce5-4020-a811-522235fdaad9"]
+},
+WindowSize->{1280, 1388},
+WindowMargins->{{Automatic, 0}, {0, Automatic}},
+Magnification:>1.25 Inherited,
+FrontEndVersion->"11.3 for Linux x86 (64-bit) (March 6, 2018)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]], 
+   Cell[
+    StyleData["DisplayFormula"]]}, Visible -> False, FrontEndVersion -> 
+  "11.3 for Linux x86 (64-bit) (March 6, 2018)", StyleDefinitions -> 
+  "PrivateStylesheetFormatting.nb"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 495, 8, 66, "Code",ExpressionUUID->"6965bc4f-3bd0-42bf-8a73-8822a485dccd"],
+Cell[1056, 30, 353, 5, 69, "Input",ExpressionUUID->"8ee216d0-a746-425c-93db-91fdef753341"],
+Cell[1412, 37, 270, 4, 39, "Input",ExpressionUUID->"634af1a5-4e90-4e4a-81df-6ad92fa67dc7"],
+Cell[1685, 43, 315, 5, 39, "Input",ExpressionUUID->"910aed07-ba2c-4b3c-8140-e1c70a0b6e8a"],
+Cell[2003, 50, 1676, 36, 475, "Input",ExpressionUUID->"101e39c3-345d-4236-b3a9-7f6feddd907c"],
+Cell[3682, 88, 328, 5, 69, "Input",ExpressionUUID->"0ee9e11d-7cf0-4cee-9ce9-53fb23b41999"],
+Cell[4013, 95, 283, 4, 39, "Input",ExpressionUUID->"fd4e027d-80d8-44e1-bcc9-43940653243b"],
+Cell[4299, 101, 441, 11, 39, "Input",ExpressionUUID->"add32500-98f8-441b-bee8-f9ea8ee04d7f"],
+Cell[4743, 114, 337, 8, 62, "Program",ExpressionUUID->"834c0467-cdf8-4644-8138-4b7031099acb",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin"],
+Cell[5083, 124, 181, 2, 44, "Output",ExpressionUUID->"9c9d0b31-c48e-42db-9aeb-e5c9c11fc382"],
+Cell[5267, 128, 346, 6, 62, "Program",ExpressionUUID->"a49a3f06-922c-4d8c-9405-817a7476a0d3",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin"],
+Cell[5616, 136, 476, 10, 28, "Message",ExpressionUUID->"6223f794-e376-4085-8533-52afbcfc6c70"],
+Cell[6095, 148, 179, 2, 44, "Output",ExpressionUUID->"9841a69c-88fa-4cdb-ad45-2d23b8236ce5"],
+Cell[6277, 152, 345, 8, 62, "Program",ExpressionUUID->"7b554f8f-24f8-45e6-aba7-1f351ef6dda7",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin"],
+Cell[6625, 162, 201, 2, 44, "Output",ExpressionUUID->"48397aeb-0604-4397-a42e-c5b1d98bb394"],
+Cell[6829, 166, 309, 5, 69, "Input",ExpressionUUID->"394a3393-3d25-4d3d-a35a-739550973b95"],
+Cell[7141, 173, 171, 5, 4, "PageBreak",ExpressionUUID->"705e40c3-0163-4733-b7c0-5d1390b6f3c4"],
+Cell[7315, 180, 1267, 19, 1374, "Input",ExpressionUUID->"51f0922e-7e19-4c2d-833a-af1e79f1a64c"],
+Cell[8585, 201, 171, 5, 4, "PageBreak",ExpressionUUID->"21b7d585-bbbc-4863-9a9e-31296811c29b"],
+Cell[8759, 208, 471, 10, 69, "Input",ExpressionUUID->"266abf77-7d15-428c-b628-527d08435750"],
+Cell[9233, 220, 242, 5, 39, "Input",ExpressionUUID->"c84ab318-b5d8-4b26-b1fc-7596aded3683"],
+Cell[9478, 227, 242, 5, 39, "Input",ExpressionUUID->"24cbe3ea-c554-416f-91f5-37afbab45488"],
+Cell[9723, 234, 242, 5, 39, "Input",ExpressionUUID->"4afc2ded-b898-43b3-87c0-d2b468500956"],
+Cell[9968, 241, 242, 5, 39, "Input",ExpressionUUID->"7144433c-97ca-4578-8d42-7cd62a81e218"],
+Cell[10213, 248, 242, 5, 39, "Input",ExpressionUUID->"2b16b1ae-83de-4f49-b8f9-3cdb89b1ac8c"],
+Cell[10458, 255, 242, 5, 39, "Input",ExpressionUUID->"df3420d9-3de1-413d-ad14-8782848d0f1f"],
+Cell[10703, 262, 242, 5, 39, "Input",ExpressionUUID->"ab14ad58-fec7-4e9e-aae5-41ae194539df"],
+Cell[10948, 269, 173, 5, 4, "PageBreak",ExpressionUUID->"796ace9d-c592-4cb4-85e2-b9a10db0c39a"],
+Cell[11124, 276, 2441, 50, 475, "Input",ExpressionUUID->"46a84479-db50-4dab-a8a8-3349f26fa1ab"],
+Cell[13568, 328, 314, 9, 44, "Text",ExpressionUUID->"eee7fa9c-3a4f-426c-a314-2fedb3618c80",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin"],
+Cell[13885, 339, 564, 13, 44, "Text",ExpressionUUID->"c208554c-9425-4e9b-b9a4-11d3b1e6cff5",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin"],
+Cell[14452, 354, 513, 12, 44, "Text",ExpressionUUID->"cebbcf50-0dc3-4bfc-abe0-6791b0cfe4c8",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin"],
+Cell[14968, 368, 201, 3, 44, "Output",ExpressionUUID->"2f7f4e7a-5cf8-441a-8c7d-f8163da0700f"],
+Cell[15172, 373, 156, 3, 39, "Input",ExpressionUUID->"673fb0d0-e44e-46e1-b8b2-2644a2b7542b"],
+Cell[15331, 378, 214, 5, 39, "Input",ExpressionUUID->"d2578384-ef94-4252-a9d4-3b72b1a186fc"],
+Cell[15548, 385, 214, 5, 39, "Input",ExpressionUUID->"8e1a9966-5ab5-4372-9b9a-3c58b0141f63"],
+Cell[15765, 392, 566, 13, 44, "Text",ExpressionUUID->"09cc1e19-3f7c-4696-a783-b85c5cb128d5",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin"],
+Cell[16334, 407, 565, 13, 44, "Text",ExpressionUUID->"f24d1f80-88aa-4b19-9c3c-a443901e8064",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin"],
+Cell[16902, 422, 566, 13, 44, "Text",ExpressionUUID->"7e47e5b8-61da-414d-9dfd-2d99c4090bf2",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin"],
+Cell[17471, 437, 566, 13, 44, "Text",ExpressionUUID->"8374ea3e-467a-4b5b-8d2a-87d65cd4bb82",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin"],
+Cell[18040, 452, 568, 13, 44, "Text",ExpressionUUID->"550ac235-11d9-4fed-98b3-069f66401d82",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin"],
+Cell[18611, 467, 564, 13, 44, "Text",ExpressionUUID->"f1293f3f-3c27-474d-a37f-98f72ee4974d",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin"],
+Cell[19178, 482, 394, 8, 44, "Text",ExpressionUUID->"8688fbb7-ec57-41cc-9945-b8a6a60a2e8e",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin"],
+Cell[19575, 492, 425, 13, 44, "Text",ExpressionUUID->"8115f9da-dce5-4020-a811-522235fdaad9",
+ Evaluatable->True,
+ CellGroupingRules->"InputGroupin"]
+}
+]
+*)
+
